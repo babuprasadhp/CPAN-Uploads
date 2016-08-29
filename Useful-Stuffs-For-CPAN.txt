@@ -1,0 +1,66 @@
+
+1) To create CPAN modules - Run below command
+   module-starter --module=Amibroker::OLE::Test  --author="Babu Prasad HP" --email=bprasad@cpan.org
+
+2) Write the required module
+3) Write POD documentation in that module
+4) Now check the module for Perlcritic - atleast pass level-5 and level-4
+5) Run perl-tidy
+6) Check for the correctness of POD documentation
+	run podchecker.pl script, (present in AmiTesting)
+	C:\BabuDevProjects\AmiTesting>podchecker.pl C:\BabuDevProjects\CPAN-UPLOAD\Amibroker-OLE-Interface\lib\Amibroker\OLE\Interface.pm
+7) Convert pod 2 html using pod2html command
+   pod2html -infile=module_file -outfile=html_file
+   pod2html -infile=C:\BabuDevProjects\CPAN-UPLOAD\Amibroker-OLE-Interface\lib\Amibroker\OLE\Interface.pm -outfile=interface.html
+
+8) Create a versioning for the distribution, the versioning should match the one in the module.
+
+10) Write test files under /t/module.t 
+11) Update Changes file
+12) Update README file
+13) Update MANIFEST file
+14) Update Makefile.PL (Sample example)
+
+WriteMakefile(
+    NAME             => 'Amibroker::OLE::Interface',
+    AUTHOR           => q{Babu Prasad HP <bprasad@cpan.org>},
+    VERSION_FROM     => 'lib/Amibroker/OLE/Interface.pm',
+    ABSTRACT_FROM    => 'lib/Amibroker/OLE/Interface.pm',
+    LICENSE          => 'artistic_2',
+    PL_FILES         => {},
+    MIN_PERL_VERSION => 5.006,
+    CONFIGURE_REQUIRES => {
+        'ExtUtils::MakeMaker' => 0,
+    },
+    BUILD_REQUIRES => {
+        'Test::More' => 0,
+    },
+    PREREQ_PM => {
+		'Win32::OLE'	=> 0.1712,
+		'Win32'	=> 0.51,
+		'Carp'	=> 0,
+    },
+	TEST_REQUIRES => {
+		'Test::More' => 1.001014,
+		'FindBin'	 => 0,
+	},
+	test => {
+		'TESTS' => "t/*.t",
+	},
+    dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    clean => { FILES => 'Amibroker-OLE-Interface-*' },
+);
+
+15) Run perl Makefile.PL
+   This will create MYMETA.json and MYMETA.yml
+   Now add these files to MANIFEST
+
+16) Run dmake dist   
+   
+17) After you are satisfied with all the above tasks now create distribution.tar.gz
+   for that open cygwin and run below commands:
+   tar -cvf Amibroker-OLE-Interface-0.02.tar Amibroker-OLE-Interface-0.02
+   gzip Amibroker-OLE-Interface-0.02.tar
+   
+18) Recent uploads = https://metacpan.org/recent
+

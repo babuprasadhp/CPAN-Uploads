@@ -1,0 +1,10 @@
+Revision history for Amibroker-AFL-Tools
+
+0.01    2015-09-21
+        First version, released to perl/trading world.
+0.02	2015-09-22
+		Fixed Integration problem of Backtester and Optimizer
+		Added documentation for Backtester 
+		Added Scripts
+0.03	2015-09-22
+		Package failed to upload, so retrying with some fixes
